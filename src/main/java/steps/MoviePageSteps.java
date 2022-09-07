@@ -19,8 +19,25 @@ public class MoviePageSteps {
             return false;
         }
     }
-    public void addToList(){
+    public void addNewList(){
         logger.log(Level.WARNING,"You haven't create any lists.");
         System.out.println("+ Create new list");
+    }
+    public void movie (String movieName){
+        System.out.println("Do you want to mark '" + movieName + "' as favorite? yes/no");
+    }
+    public boolean favMark(String userDecision){
+        if(userDecision == "yes"){
+            System.out.println("Your decision is: " + userDecision);
+            logger.log(Level.INFO,"The favorite icon has been marked");
+            System.out.println("Success! The movie has been added to your favorites");
+            return true;
+        } if (userDecision == "no") {
+            System.out.println("Your decision is: " + userDecision);
+            logger.log(Level.INFO,"The favorite icon is dismark");
+            return true;
+        } else {
+            return false;
+        }
     }
 }

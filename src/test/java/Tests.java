@@ -23,13 +23,13 @@ public class Tests {
         mainPage.searchMovieName("Elvis");
         MoviePageSteps moviePage = new MoviePageSteps();
         moviePage.mainMoviePage();
-        Assert.assertTrue(moviePage.chooseRate(3), "The movie can't be rated because the number is not between 1 to 5");
+        Assert.assertTrue(moviePage.chooseRate(3), "The movie can't be rated because the number is not between 1 to 5"); // The message is only if is false the condition
         System.out.println("#############################################################");
     }
     @Test
     public void createList(){
         MoviePageSteps moviePage = new MoviePageSteps();
-        moviePage.addToList();
+        moviePage.addNewList();
         NewListPage newList = new NewListPage();
 
         Assert.assertTrue(newList.creatingNewList(" My first list"), "The name of the list has to have at least 5 characters");
@@ -39,12 +39,16 @@ public class Tests {
         System.out.println("#############################################################");
     }
     @Test
-    public void filmData(){
-        System.out.println("Datos del filme");
+    public void movieFilter(){
+        System.out.println(" ");
     }
     @Test
     public void favoriteMark(){
-        System.out.println("Marcado como favorito");
+        MoviePageSteps moviePage = new MoviePageSteps();
+        moviePage.movie("Thor: Love and Thunder");
+
+        Assert.assertTrue(moviePage.favMark("no"), "You have to mark 'yes' to add to favorite or mark 'no' if you don't want to mark as favorite");
+        System.out.println("#############################################################");
     }
     @Test
     public void addToList(){
