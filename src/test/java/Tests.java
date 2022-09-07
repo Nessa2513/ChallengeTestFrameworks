@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import steps.MainPageSteps;
 import steps.MoviePageSteps;
 import steps.NewListPage;
+import steps.TvShows;
 
 public class Tests {
 
@@ -36,10 +37,6 @@ public class Tests {
         System.out.println("#############################################################");
     }
     @Test
-    public void movieFilter(){
-        System.out.println(" ");
-    }
-    @Test
     public void favoriteMark(){
         moviePage.favMovie(mainPage.selectingMovie("Thor: Love and Thunder"));
         Assert.assertTrue(moviePage.favMark("no"), "You have to mark 'yes' to add to favorite or mark 'no' if you don't want to mark as favorite");
@@ -49,6 +46,14 @@ public class Tests {
     public void addToList(){
         moviePage.toListMovie(mainPage.selectingMovie("Top Gun"));
         Assert.assertTrue(moviePage.addToList("List 3"), "The name has to match with one of your named lists");
+        System.out.println("#############################################################");
+    }
+    @Test
+    public void ratePopularTvShow(){
+        TvShows tvShows = new TvShows();
+        mainPage.popularTvShowBottom();
+        Assert.assertTrue(tvShows.selectingTvShow(10), "The number of popular TV Shows is between 1 to 20");
+        Assert.assertTrue(moviePage.chooseRate(1), "The movie can't be rated because the number is not between 1 to 5");
         System.out.println("#############################################################");
     }
 }

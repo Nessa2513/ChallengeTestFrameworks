@@ -11,7 +11,7 @@ public class MoviePageSteps {
 
     public boolean chooseRate(int rate){
         System.out.println("#############################################################");
-        System.out.println("Please select a rate for the movie");
+        System.out.println("Please select a rate for the item");
         System.out.println("The selected rate is: " + rate);
         if(1<=rate & rate<=5){
             System.out.println("Success! Your rating has been saved");
