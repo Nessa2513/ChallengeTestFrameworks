@@ -5,10 +5,11 @@ import org.testng.annotations.Test;
 import steps.MainPageSteps;
 import steps.MoviePageSteps;
 import steps.NewListPage;
-import steps.MainPageSteps;
-import steps.MoviePageSteps;
 
 public class Tests {
+
+    MainPageSteps mainPage = new MainPageSteps(); //Instanciar una clase = crear objet
+    MoviePageSteps moviePage = new MoviePageSteps();
     @BeforeTest // General to all test cases
     public void login(){
         LogIn userLogIn = new LogIn();
@@ -18,17 +19,13 @@ public class Tests {
     // Desing pattern = Page Object Model
     @Test
     public void verifyRateWithMessage(){
-        MainPageSteps mainPage = new MainPageSteps(); //Instanciar una clase = crear objeto
-        mainPage.selectingMovie();
-        mainPage.searchMovieName("Elvis");
-        MoviePageSteps moviePage = new MoviePageSteps();
+        mainPage.searchMovieName(mainPage.selectingMovie("Elvis"));
         moviePage.mainMoviePage();
         Assert.assertTrue(moviePage.chooseRate(3), "The movie can't be rated because the number is not between 1 to 5"); // The message is only if is false the condition
         System.out.println("#############################################################");
     }
     @Test
     public void createList(){
-        MoviePageSteps moviePage = new MoviePageSteps();
         moviePage.addNewList();
         NewListPage newList = new NewListPage();
 
@@ -44,14 +41,14 @@ public class Tests {
     }
     @Test
     public void favoriteMark(){
-        MoviePageSteps moviePage = new MoviePageSteps();
-        moviePage.movie("Thor: Love and Thunder");
-
+        moviePage.favMovie(mainPage.selectingMovie("Thor: Love and Thunder"));
         Assert.assertTrue(moviePage.favMark("no"), "You have to mark 'yes' to add to favorite or mark 'no' if you don't want to mark as favorite");
         System.out.println("#############################################################");
     }
     @Test
     public void addToList(){
-        System.out.println("Agregado a la lista");
+        moviePage.toListMovie(mainPage.selectingMovie("Top Gun"));
+        Assert.assertTrue(moviePage.addToList("List 3"), "The name has to match with one of your named lists");
+        System.out.println("#############################################################");
     }
 }

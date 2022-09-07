@@ -8,6 +8,7 @@ public class MoviePageSteps {
     public void mainMoviePage(){
     logger.log(Level.INFO,"You are in the data page of the selected movie");
     }
+
     public boolean chooseRate(int rate){
         System.out.println("#############################################################");
         System.out.println("Please select a rate for the movie");
@@ -23,7 +24,7 @@ public class MoviePageSteps {
         logger.log(Level.WARNING,"You haven't create any lists.");
         System.out.println("+ Create new list");
     }
-    public void movie (String movieName){
+    public void favMovie (String movieName){
         System.out.println("Do you want to mark '" + movieName + "' as favorite? yes/no");
     }
     public boolean favMark(String userDecision){
@@ -37,6 +38,20 @@ public class MoviePageSteps {
             logger.log(Level.INFO,"The favorite icon is dismark");
             return true;
         } else {
+            return false;
+        }
+    }
+    public void toListMovie (String movieName){
+        logger.log(Level.INFO,"The user clicked on the buttom 'Add to list'");
+        System.out.println("Add '" + movieName + "' to one of your lists");
+        System.out.println("Select the list where you want to add '" + movieName + "' ");
+    }
+    public boolean addToList(String addMovieToList){
+        if (addMovieToList == "List 1" || addMovieToList == "List 2" || addMovieToList == "List 3"){
+            System.out.println("Success! Item added to '" + addMovieToList + "'");
+            logger.log(Level.INFO,"The list '" + addMovieToList + "' has a new item");
+            return true;
+        }else {
             return false;
         }
     }
